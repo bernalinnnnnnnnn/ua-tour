@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UA360X</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
+      font-family: "Segoe UI", Arial, sans-serif;
+      position: relative;
+    }
+
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: 1;
+    }
+
+    .overlay-logo {
+      position: fixed;
+      top: 10%;
+      width: 150px;
+      height: 100px;
+      opacity: 0.9;
+      transform: translateY(-50%);
+      pointer-events: none;
+      filter: drop-shadow(0 0 10px rgba(0, 136, 255, 0.7));
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 5;
+      object-fit: contain;
+    }
+
+    .overlay-logo.left {
+      left: 0px;
+    }
+
+    .overlay-logo.right {
+      right: 25px;
+    }
+
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00bfff;
+      color: #00bfff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      font-size: 22px;
+    }
+
+    .back-button:hover {
+      background: #00bfff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    h2 {
+      color: white;
+      text-align: center;
+      margin-top: 20%;
+      font-weight: normal;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="back-button" onclick="goBack()">🏠</div>
+
+  <img id="leftLogo" src="assets/logo.png" alt="Left Overlay" class="overlay-logo left">
+  <img id="rightLogo" src="assets/agri-new.jpg" alt="Right Overlay" class="overlay-logo right">
+
+  <iframe id="tourFrame" allowfullscreen></iframe>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const tourUrl = params.get("url");
+    const tourFrame = document.getElementById("tourFrame");
+    const leftLogo = document.getElementById("leftLogo");
+    const rightLogo = document.getElementById("rightLogo");
+
+    const tourAssets = {
+      "7DxGN": { left: "assets/maps/cte-map.png", right: "assets/logos/cte-logo.png" },
+      "7D308": { left: "assets/maps/it-map.png", right: "assets/logos/it-logo.png" },
+      "7DSkq": { left: "assets/maps/atdc-map.png", right: "assets/logos/atdc-logo.png" },
+      "7DSYF": { left: "assets/maps/library-map.png", right: "assets/logos/library-logo.png" },
+      "7H4MZ": { left: "assets/maps/canteen-map.png", right: "assets/logos/canteen-logo.png" },
+      "7H4Mc": { left: "assets/maps/guidance-map.png", right: "assets/logos/guidance-logo.png" },
+      "7H4MG": { left: "assets/maps/gym-map.png", right: "assets/logos/gym-logo.png" },
+      "7H4HH": { left: "assets/maps/oldagri-map.png", right: "assets/logos/oldagri-logo.png" },
+      "7H4DT": { left: "assets/maps/labschool-map.png", right: "assets/logos/labschool-logo.png" },
+      "7H4Dt": { left: "assets/maps/labcanteen-map.png", right: "assets/logos/labcanteen-logo.png" },
+      "7H4qw": { left: "assets/maps/natsciences-map.png", right: "assets/logos/natsciences-logo.png" },
+      "7Dtgc": { left: "assets/maps/sciences-map.png", right: "assets/logos/sciences-logo.png" },
+      "7DrsL": { left: "assets/maps/agri-map.png", right: "assets/logos/agri-logo.png" },
+      "7DSqc": { left: "assets/maps/executive-map.png", right: "assets/logos/executive-logo.png" },
+      "7DSkB": { left: "assets/maps/guest-map.png", right: "assets/logos/guest-logo.png" },
+      "7DWfD": { left: "assets/maps/studentcenter-map.png", right: "assets/logos/studentcenter-logo.png" },
+      "7D3R5": { left: "assets/maps/forestry-map.png", right: "assets/logos/forestry-logo.png" },
+      "7H8LM": { left: "assets/maps/cit-map.png", right: "assets/logos/cit-logo.png" },
+      "7H8JQ": { left: "assets/maps/ccje-map.png", right: "assets/logos/ccje-logo.png" },
+      "7H8KL": { left: "assets/maps/cbm-map.png", right: "assets/logos/cbm-logo.png" },
+      "7H8MN": { left: "assets/maps/chs-map.png", right: "assets/logos/chs-logo.png" },
+      "7H8PR": { left: "assets/maps/cas-map.png", right: "assets/logos/cas-logo.png" }
+    };
+
+    if (tourUrl) {
+      tourFrame.src = tourUrl;
+      const match = tourUrl.match(/collection\/([a-zA-Z0-9]+)/);
+      const tourCode = match ? match[1] : null;
+
+      if (tourCode && tourAssets[tourCode]) {
+        leftLogo.src = tourAssets[tourCode].left;
+        rightLogo.src = tourAssets[tourCode].right;
+      } else {
+        leftLogo.src = "assets/logo.png";
+        rightLogo.src = "assets/agri-new.jpg";
+      }
+    } else {
+      document.body.innerHTML = `<h2>No tour selected.</h2>`;
+    }
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+
+</html>
