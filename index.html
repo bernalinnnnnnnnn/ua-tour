@@ -10,9 +10,7 @@
     /* Override styles for logo positioning */
     .viewer .overlay-logo {
       position: absolute;
-      bottom: 20px;
-      width: 150px;
-      height: 150px;
+      top: 20px;
       object-fit: contain;
       opacity: 0.85;
       pointer-events: none;
@@ -23,10 +21,14 @@
 
     .viewer .overlay-logo.left {
       left: 20px;
+      width: 120px;        /* Logo size - adjust this */
+      height: 120px;
     }
 
     .viewer .overlay-logo.right {
       right: 20px;
+      width: 180px;        /* Map size - adjust this */
+      height: 180px;
     }
 
     .viewer iframe {
@@ -41,33 +43,37 @@
 
     @media (max-width: 768px) {
       .viewer .overlay-logo {
-        width: 100px;
-        height: 100px;
-        bottom: 15px;
+        top: 15px;
       }
 
       .viewer .overlay-logo.left {
         left: 15px;
+        width: 80px;       /* Logo size for tablet */
+        height: 80px;
       }
 
       .viewer .overlay-logo.right {
         right: 15px;
+        width: 120px;      /* Map size for tablet */
+        height: 120px;
       }
     }
 
     @media (max-width: 480px) {
       .viewer .overlay-logo {
-        width: 80px;
-        height: 80px;
-        bottom: 10px;
+        top: 10px;
       }
 
       .viewer .overlay-logo.left {
         left: 10px;
+        width: 60px;       /* Logo size for mobile */
+        height: 60px;
       }
 
       .viewer .overlay-logo.right {
         right: 10px;
+        width: 90px;       /* Map size for mobile */
+        height: 90px;
       }
     }
   </style>
@@ -86,8 +92,8 @@
   <div class="viewer" id="viewer">
     <iframe id="tourFrame" title="Campus Tour Viewer" src=""
       allow="accelerometer; gyroscope; xr-spatial-tracking"></iframe>
-    <img id="leftLogo" src="assets/logo.png" alt="Map Overlay" class="overlay-logo left">
-    <img id="rightLogo" src="assets/agri-new.jpg" alt="Logo Overlay" class="overlay-logo right">
+    <img id="leftLogo" src="assets/logos/logo.png" alt="UA Logo" class="overlay-logo left">
+    <img id="rightLogo" src="assets/map/default.png" alt="Map Overlay" class="overlay-logo right">
     <button id="backBtn" class="back-btn" title="Back to home">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -129,6 +135,36 @@
       { name: "Main Gate", link: "https://kuula.co/share/hR8LG/collection/7H5CQ?logo=-1&info=0&fs=0&vr=0&sd=1&thumbs=-1&keys=0", top: "37.5%", left: "21.2%" }
     ];
 
+    // Tour assets mapping (same as in tour.html)
+    const tourAssets = {
+      "7HLDj": { left: "assets/logos/logo.png", right: "assets/map/admin.png" },
+      "7H4DT": { left: "assets/logos/logo.png", right: "assets/map/labschool.png" },
+      "7Hm8L": { left: "assets/logos/logo.png", right: "assets/map/elem.png" },
+      "7Hhr1": { left: "assets/logos/logo.png", right: "assets/map/ht.png" },
+      "7HL6Z": { left: "assets/logos/logo.png", right: "assets/map/ffp.png" },
+      "7Hm6F": { left: "assets/logos/logo.png", right: "assets/map/research.png" },
+      "7HmCC": { left: "assets/logos/logo.png", right: "assets/map/aftic.png" },
+      "7HmPt": { left: "assets/logos/logo.png", right: "assets/map/heas.png" },
+      "7Hmlp": { left: "assets/logos/logo.png", right: "assets/map/clinic.png" },
+      "7DSYF": { left: "assets/logos/logo.png", right: "assets/map/library.png" },
+      "7H4MG": { left: "assets/logos/logo.png", right: "assets/map/gym.png" },
+      "7H5Mg": { left: "assets/logos/logo.png", right: "assets/map/bamboo.png" },
+      "7D308": { left: "assets/logos/logo.png", right: "assets/map/cmcs.png" },
+      "7Dtgc": { left: "assets/logos/logo.png", right: "assets/map/sciences.png" },
+      "7H4Mc": { left: "assets/logos/logo.png", right: "assets/map/guidance.png" },
+      "7H4qw": { left: "assets/logos/logo.png", right: "assets/map/natsci.png" },
+      "7DWfD": { left: "assets/logos/logo.png", right: "assets/map/sc.png" },
+      "7DxGN": { left: "assets/logos/logo.png", right: "assets/map/educ.png" },
+      "7D3R5": { left: "assets/logos/logo.png", right: "assets/map/forestry.png" },
+      "7DrsL": { left: "assets/logos/logo.png", right: "assets/map/new-agri.png" },
+      "7DSkq": { left: "assets/logos/logo.png", right: "assets/map/atdc.png" },
+      "7HLvX": { left: "assets/logos/logo.png", right: "assets/map/processing.png" },
+      "7H4HH": { left: "assets/logos/logo.png", right: "assets/map/old-agri.png" },
+      "7DSqc": { left: "assets/logos/logo.png", right: "assets/map/exe.png" },
+      "7DSkB": { left: "assets/logos/logo.png", right: "assets/map/guest.png" },
+      "7H5CQ": { left: "assets/logos/logo.png", right: "assets/map/main.png" }
+    };
+
     const container = document.getElementById('mapContainer');
     const viewer = document.getElementById('viewer');
     const frame = document.getElementById('tourFrame');
@@ -136,6 +172,8 @@
     const sidebar = document.getElementById('sidebar');
     const menuBtn = document.getElementById('menuBtn');
     const overlay = document.getElementById('overlay');
+    const leftLogo = document.getElementById('leftLogo');
+    const rightLogo = document.getElementById('rightLogo');
 
     // Create map pins
     pins.forEach(p => {
@@ -164,8 +202,25 @@
       }
     });
 
+    function updateOverlayImages(tourUrl) {
+      // Extract tour code from Kuula URL
+      const match = tourUrl.match(/collection\/([a-zA-Z0-9]+)/);
+      const tourCode = match ? match[1] : null;
+
+      // Update logo + map dynamically
+      if (tourCode && tourAssets[tourCode]) {
+        leftLogo.src = tourAssets[tourCode].left;
+        rightLogo.src = tourAssets[tourCode].right;
+      } else {
+        // Fallback to default images
+        leftLogo.src = "assets/logos/logo.png";
+        rightLogo.src = "assets/map/default.png";
+      }
+    }
+
     function openTour(url) {
       frame.src = url;
+      updateOverlayImages(url);
       viewer.classList.add('open');
       viewer.setAttribute('aria-hidden', 'false');
       setTimeout(() => backBtn.classList.add('show'), 220);
@@ -191,7 +246,12 @@
       backBtn.classList.remove('show');
       viewer.classList.remove('open');
       viewer.setAttribute('aria-hidden', 'true');
-      setTimeout(() => { frame.src = ""; }, 420);
+      setTimeout(() => { 
+        frame.src = "";
+        // Reset to default images
+        leftLogo.src = "assets/logos/logo.png";
+        rightLogo.src = "assets/map/default.png";
+      }, 420);
       document.querySelector('.map-container').style.filter = 'none';
     }
 
