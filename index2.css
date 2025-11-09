@@ -1,0 +1,339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #0ea5ff;
+  --primary-dark: #0284c7;
+  --secondary: #1e293b;
+  --bg: #0f172a;
+  --text: #f8fafc;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--bg) 0%, #1e293b 100%);
+  color: var(--text);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 100;
+  box-shadow: 0 4px 6px var(--shadow);
+  border-bottom: 2px solid var(--primary);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+#menuBtn {
+  background: var(--primary);
+  border: none;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(14, 165, 255, 0.3);
+}
+
+#menuBtn:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+#menuBtn:active {
+  transform: scale(0.95);
+}
+
+/* Map Container - Responsive */
+.map-container {
+  position: relative;
+  margin: 90px auto 20px;
+  max-width: 1400px;
+  width: 95%;
+  transition: filter 0.3s ease;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px var(--shadow);
+}
+
+#campusMap {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+
+/* Responsive Pin Positioning */
+.pin {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url("assets/pin2.png") center bottom / contain no-repeat;
+  cursor: pointer;
+  transform: translate(-50%, -100%);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.pin:hover {
+  transform: translate(-50%, -110%) scale(1.15);
+  z-index: 20;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  color: #ffffff;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  margin-bottom: 5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  font-weight: 600;
+}
+
+.pin:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-3px);
+}
+
+/* Viewer */
+.viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.viewer.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Back Button */
+.back-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.back-btn:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.back-btn:active {
+  transform: scale(0.95);
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 90%;
+  max-width: 400px;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(10px);
+  z-index: 150;
+  transition: left 0.3s ease;
+  box-shadow: 4px 0 20px var(--shadow);
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 140;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .map-container {
+    width: 95%;
+  }
+  
+  .pin {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .tooltip {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  header {
+    height: 60px;
+    padding: 0 15px;
+  }
+  
+  header h1 {
+    font-size: 1.1rem;
+  }
+  
+  #menuBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+  
+  .map-container {
+    margin: 80px auto 15px;
+    width: 98%;
+  }
+  
+  .pin {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .pin:hover {
+    transform: translate(-50%, -110%) scale(1.15);
+  }
+  
+  .tooltip {
+    font-size: 0.75rem;
+  }
+  
+  .back-btn {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .sidebar {
+    width: 85%;
+    max-width: 320px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1rem;
+  }
+  
+  .map-container {
+    margin: 75px auto 10px;
+  }
+  
+  .pin {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .back-btn {
+    width: 45px;
+    height: 45px;
+    bottom: 15px;
+    left: 15px;
+  }
+}
+
+/* Landscape Orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .map-container {
+    margin: 70px auto 10px;
+  }
+  
+  .tooltip {
+    display: none;
+  }
+  
+  .pin:active .tooltip {
+    display: block;
+  }
+}
