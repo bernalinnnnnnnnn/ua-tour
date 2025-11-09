@@ -32,13 +32,14 @@
 
     .overlay-logo {
       position: fixed;
-      top: 5%;
+      bottom: 20px;
       width: 150px;
-      height: auto;
-      opacity: 0.9;
+      height: 150px;
+      object-fit: contain;
+      opacity: 0.85;
       pointer-events: none;
-      z-index: 5;
-      filter: drop-shadow(0 0 10px rgba(14, 165, 255, 0.7));
+      z-index: 10;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
       transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
@@ -53,7 +54,8 @@
     .back-button {
       position: fixed;
       bottom: 30px;
-      left: 30px;
+      left: 50%;
+      transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.7);
       border: 2px solid #0ea5ff;
       color: #0ea5ff;
@@ -78,12 +80,12 @@
     .back-button:hover {
       background: #0ea5ff;
       color: #000;
-      transform: scale(1.1);
+      transform: translateX(-50%) scale(1.1);
       box-shadow: 0 0 20px rgba(14, 165, 255, 0.5);
     }
 
     .back-button:active {
-      transform: scale(0.95);
+      transform: translateX(-50%) scale(0.95);
     }
 
     .loading {
@@ -109,14 +111,22 @@
     @media (max-width: 768px) {
       .overlay-logo {
         width: 100px;
-        top: 6%;
+        height: 100px;
+        bottom: 15px;
+      }
+
+      .overlay-logo.left {
+        left: 15px;
+      }
+
+      .overlay-logo.right {
+        right: 15px;
       }
 
       .back-button {
         width: 50px;
         height: 50px;
         bottom: 20px;
-        left: 20px;
       }
 
       .back-button svg {
@@ -132,14 +142,22 @@
     @media (max-width: 480px) {
       .overlay-logo {
         width: 80px;
-        top: 4%;
+        height: 80px;
+        bottom: 10px;
+      }
+
+      .overlay-logo.left {
+        left: 10px;
+      }
+
+      .overlay-logo.right {
+        right: 10px;
       }
 
       .back-button {
         width: 45px;
         height: 45px;
         bottom: 15px;
-        left: 15px;
       }
 
       .back-button svg {
@@ -156,6 +174,11 @@
 </head>
 
 <body>
+  <iframe id="tourFrame" allow="accelerometer; gyroscope; xr-spatial-tracking"></iframe>
+  
+  <img id="leftLogo" src="assets/logo.png" alt="Map Overlay" class="overlay-logo left">
+  <img id="rightLogo" src="assets/agri-new.jpg" alt="Logo Overlay" class="overlay-logo right">
+  
   <button class="back-button" onclick="goBack()" title="Back to Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -163,11 +186,7 @@
     </svg>
   </button>
 
-  <img id="leftLogo" src="assets/logo.png" alt="Map Overlay" class="overlay-logo left">
-  <img id="rightLogo" src="assets/agri-new.jpg" alt="Logo Overlay" class="overlay-logo right">
-
   <div class="loading" id="loading">Loading virtual tour...</div>
-  <iframe id="tourFrame" allow="accelerometer; gyroscope; xr-spatial-tracking"></iframe>
 
   <script>
     const params = new URLSearchParams(window.location.search);
