@@ -10,7 +10,6 @@
     /* Override styles for logo positioning */
     .viewer .overlay-logo {
       position: absolute;
-      top: 20px;
       object-fit: contain;
       opacity: 0.85;
       pointer-events: none;
@@ -19,16 +18,20 @@
       transition: opacity 0.3s ease;
     }
 
+    /* LEFT LOGO - Adjust size and position independently */
     .viewer .overlay-logo.left {
-      left: 20px;
-      width: 120px;        /* Logo size - adjust this */
-      height: 120px;
+      top: 30px;           /* Vertical position */
+      left: 20px;          /* Horizontal position */
+      width: 100px;        /* Logo width - adjust this */
+      height: 100px;       /* Logo height - adjust this */
     }
 
+    /* RIGHT MAP - Adjust size and position independently */
     .viewer .overlay-logo.right {
-      right: 20px;
-      width: 180px;        /* Map size - adjust this */
-      height: 180px;
+      top: 0px;           /* Vertical position (same as left for alignment) */
+      right: 20px;         /* Horizontal position */
+      width: 200px;        /* Map width - adjust this */
+      height: 200px;       /* Map height - adjust this */
     }
 
     .viewer iframe {
@@ -41,36 +44,34 @@
       z-index: 1;
     }
 
+    /* TABLET RESPONSIVENESS */
     @media (max-width: 768px) {
-      .viewer .overlay-logo {
-        top: 15px;
-      }
-
       .viewer .overlay-logo.left {
+        top: 15px;
         left: 15px;
-        width: 80px;       /* Logo size for tablet */
-        height: 80px;
+        width: 70px;       /* Logo size for tablet */
+        height: 70px;
       }
 
       .viewer .overlay-logo.right {
+        top: 15px;
         right: 15px;
-        width: 120px;      /* Map size for tablet */
-        height: 120px;
+        width: 110px;      /* Map size for tablet */
+        height: 110px;
       }
     }
 
+    /* MOBILE RESPONSIVENESS */
     @media (max-width: 480px) {
-      .viewer .overlay-logo {
-        top: 10px;
-      }
-
       .viewer .overlay-logo.left {
+        top: 10px;
         left: 10px;
         width: 60px;       /* Logo size for mobile */
         height: 60px;
       }
 
       .viewer .overlay-logo.right {
+        top: 10px;
         right: 10px;
         width: 90px;       /* Map size for mobile */
         height: 90px;
@@ -143,7 +144,7 @@
       "7Hhr1": { left: "assets/logos/logo.png", right: "assets/maps/ht.png" },
       "7HL6Z": { left: "assets/logos/logo.png", right: "assets/maps/ffp.png" },
       "7Hm6F": { left: "assets/logos/logo.png", right: "assets/maps/research.png" },
-      "7HmCC": { left: "assets/logos/logo.png", right: "assets/maps/aftic.png" },
+      "7HmCC": { left: "assets/logos/logo.png", right: "assets/maps/aftiicc.png" },
       "7HmPt": { left: "assets/logos/logo.png", right: "assets/maps/heas.png" },
       "7Hmlp": { left: "assets/logos/logo.png", right: "assets/maps/clinic.png" },
       "7DSYF": { left: "assets/logos/logo.png", right: "assets/maps/library.png" },
