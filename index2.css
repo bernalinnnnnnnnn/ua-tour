@@ -93,8 +93,8 @@ header h1 {
 /* Responsive Pin Positioning */
 .pin {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: url("assets/pin2.png") center bottom / contain no-repeat;
   cursor: pointer;
   transform: translate(-50%, -100%);
