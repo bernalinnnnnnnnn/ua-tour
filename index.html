@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta property="og:title"
-    content="UA360X: Immersive Virtual Tour Experience of the University of Abra's Main Campus Indoor Facilities">
-  <meta property="og:description"
-    content="Take a Virtual Step Into University of Abra's Main Campus Indoor Facilities – UA360X.">
-  <meta property="og:image" content="https://bernalinnnnnnnnn.github.io/ua-tour/assets/asist.png">
-  <meta property="og:url" content="https://bernalinnnnnnnnn.github.io/ua-tour/">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://bernalinnnnnnnnn.github.io/ua-tour/assets/asist.png">
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>UA360X</title>
-  <link rel="stylesheet" href="index2.css">
-
-  <style>
-    /* Override styles for logo positioning */
+ <head>
+  <meta content="UA360X: Immersive Virtual Tour Experience of the University of Abra's Main Campus Indoor Facilities" property="og:title"/>
+  <meta content="Take a Virtual Step Into University of Abra's Main Campus Indoor Facilities – UA360X." property="og:description"/>
+  <meta content="https://bernalinnnnnnnnn.github.io/ua-tour/assets/asist.png" property="og:image"/>
+  <meta content="https://bernalinnnnnnnnn.github.io/ua-tour/" property="og:url"/>
+  <meta content="website" property="og:type"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="https://bernalinnnnnnnnn.github.io/ua-tour/assets/asist.png" name="twitter:image"/>
+  <meta charset="utf-8">
+   <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>
+     UA360X
+    </title>
+    <link href="index2.css" rel="stylesheet"/>
+    <style>
+     /* Override styles for logo positioning */
     .viewer .overlay-logo {
       position: absolute;
       object-fit: contain;
@@ -235,107 +231,161 @@
         margin: 10px 0;
       }
     }
-  </style>
-</head>
-
-<body>
-
+    </style>
+   </meta>
+  </meta>
+ </head>
+ <body>
   <header>
-    <button id="menuBtn">☰</button>
-    <h1>University of Abra, Main Campus</h1>
+   <button id="menuBtn">
+    ☰
+   </button>
+   <h1>
+    University of Abra, Main Campus
+   </h1>
   </header>
-
   <div class="map-container" id="mapContainer">
-    <img src="assets/ua2.jpg" alt="University of Abra Map" id="campusMap">
-    <div class="pin-container" id="pinContainer"></div>
+   <img alt="University of Abra Map" id="campusMap" src="assets/ua2.jpg"/>
+   <div class="pin-container" id="pinContainer">
+   </div>
   </div>
-
   <div class="viewer" id="viewer">
-    <iframe id="tourFrame" title="Campus Tour Viewer" src=""
-      allow="accelerometer; gyroscope; xr-spatial-tracking"></iframe>
-
-    <img id="leftLogo" src="assets/logos/logo.png" class="overlay-logo left">
-
-    <button id="backBtn" class="back-btn" title="Back to home">
-      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-      </svg>
-    </button>
+   <iframe allow="accelerometer; gyroscope; xr-spatial-tracking" id="tourFrame" src="" title="Campus Tour Viewer">
+   </iframe>
+   <img class="overlay-logo left" id="leftLogo" src="assets/logos/logo.png"/>
+   <button class="back-btn" id="backBtn" title="Back to home">
+    <svg fill="none" height="24" stroke="currentColor" stroke-width="2" width="24">
+     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z">
+     </path>
+     <polyline points="9 22 9 12 15 12 15 22">
+     </polyline>
+    </svg>
+   </button>
   </div>
-
   <div class="sidebar" id="sidebar">
-    <iframe id="indexFrame" src="tours.html"></iframe>
+   <iframe id="indexFrame" src="tours.html">
+   </iframe>
   </div>
-
-  <div class="overlay" id="overlay"></div>
-
+  <div class="overlay" id="overlay">
+  </div>
   <!-- ABOUT MODAL -->
-  <div class="about-modal" id="aboutModal">
-    <div class="about-content">
-      <span class="close-about" id="closeAbout">&times;</span>
-      <h2>About UA360X</h2>
-      
-      <p>
-        UA360X is an immersive virtual tour experience designed to showcase the indoor facilities of the University of Abra's Main Campus. This project brings campus exploration to your fingertips, allowing prospective students, visitors, and alumni to virtually step into our academic and administrative spaces.
-      </p>
-
-      <h3>Project Overview</h3>
-      <p>
-        Built with modern web technology and integrated 360-degree panoramic imagery, UA360X provides an interactive way to explore the university's diverse facilities from anywhere in the world.
-      </p>
-
-      <h3>Development Team</h3>
-      <ul>
-        <li><strong>Project Lead:</strong> [Developer Name]</li>
-        <li><strong>Web Development:</strong> [Developer Name]</li>
-        <li><strong>3D Imaging & VR Integration:</strong> [Developer Name]</li>
-        <li><strong>User Experience Design:</strong> [Developer Name]</li>
-      </ul>
-
-      <h3>Institution</h3>
-      <p>
-        University of Abra, Main Campus<br>
-        <em>Advancing Education, Empowering Communities</em>
-      </p>
-
-      <h3>Technologies Used</h3>
-      <ul>
-        <li>360-Degree Panoramic Photography</li>
-        <li>Interactive Web Mapping</li>
-        <li>Responsive Web Design</li>
-        <li>Kuula VR Integration</li>
-      </ul>
-
-      <h3>Acknowledgments</h3>
-      <p>
-        We would like to extend our gratitude to the University of Abra administration, faculty, and staff for their support and cooperation in making this virtual tour possible.
-      </p>
-
-      <h3>Contact & Feedback</h3>
-      <p>
-        Have suggestions or questions? We'd love to hear from you.<br>
-        <strong>Email:</strong> <a href="mailto:ua360x@uar.edu.ph" style="color: #0f3460;">ua360x@uar.edu.ph</a>
-      </p>
-    </div>
+  <!-- <div class="about-modal" id="aboutModal">
+   <div class="about-content">
+    <span class="close-about" id="closeAbout">
+     ×
+    </span>
+    <h2>
+     About UA360X
+    </h2>
+    <p>
+     UA360X is an immersive virtual tour experience designed to showcase the indoor facilities of the University of Abra's Main Campus. This project brings campus exploration to your fingertips, allowing prospective students, visitors, and alumni to virtually step into our academic and administrative spaces.
+    </p>
+    <h3>
+     Project Overview
+    </h3>
+    <p>
+     Built with modern web technology and integrated 360-degree panoramic imagery, UA360X provides an interactive way to explore the university's diverse facilities from anywhere in the world.
+    </p>
+    <h3>
+     Development Team
+    </h3>
+    <ul>
+     <li>
+      <strong>
+       Project Lead:
+      </strong>
+      [Developer Name]
+     </li>
+     <li>
+      <strong>
+       Web Development:
+      </strong>
+      [Developer Name]
+     </li>
+     <li>
+      <strong>
+       3D Imaging &amp; VR Integration:
+      </strong>
+      [Developer Name]
+     </li>
+     <li>
+      <strong>
+       User Experience Design:
+      </strong>
+      [Developer Name]
+     </li>
+    </ul>
+    <h3>
+     Institution
+    </h3>
+    <p>
+     University of Abra, Main Campus
+     <br/>
+     <em>
+      Advancing Education, Empowering Communities
+     </em>
+    </p>
+    <h3>
+     Technologies Used
+    </h3>
+    <ul>
+     <li>
+      360-Degree Panoramic Photography
+     </li>
+     <li>
+      Interactive Web Mapping
+     </li>
+     <li>
+      Responsive Web Design
+     </li>
+     <li>
+      Kuula VR Integration
+     </li>
+    </ul>
+    <h3>
+     Acknowledgments
+    </h3>
+    <p>
+     We would like to extend our gratitude to the University of Abra administration, faculty, and staff for their support and cooperation in making this virtual tour possible.
+    </p>
+    <h3>
+     Contact &amp; Feedback
+    </h3>
+    <p>
+     Have suggestions or questions? We'd love to hear from you.
+     <br/>
+     <strong>
+      Email:
+     </strong>
+     <a href="mailto:ua360x@uar.edu.ph" style="color: #0f3460;">
+      ua360x@uar.edu.ph
+     </a>
+    </p>
+   </div>
   </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="#" id="aboutLink">About Us</a>
-        <a href="#" id="privacyLink">Privacy Policy</a>
-        <a href="mailto:ua360x@uar.edu.ph">Contact</a>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 University of Abra. All rights reserved. | UA360X Virtual Tour</p>
-      </div>
+  <!- FOOTER -->
+ <!--  <footer>
+   <div class="footer-content">
+    <div class="footer-links">
+     <a href="#" id="aboutLink">
+      About Us
+     </a>
+     <a href="#" id="privacyLink">
+      Privacy Policy
+     </a>
+     <a href="mailto:ua360x@uar.edu.ph">
+      Contact
+     </a>
     </div>
-  </footer>
-
+    <div class="footer-bottom">
+     <p>
+      © 2024 University of Abra. All rights reserved. | UA360X Virtual Tour
+     </p>
+    </div>
+   </div>
+  </footer> -->
   <script>
-    const pins = [
+   const pins = [
       { name: "College of Teacher Education", code: "7DxGN", link: "https://kuula.co/share/collection/7DxGN?logo=-1&info=0&fs=0&vr=0&sd=1&thumbs=-1&keys=0", top: "80%", left: "40.5%" },
       { name: "Information and Communication Technology Center", code: "7D308", link: "https://kuula.co/share/collection/7D308?logo=-1&info=0&fs=0&vr=0&sd=1&thumbs=-1&keys=0", top: "79%", left: "38.9%" },
       { name: "Asist Training and Development Center", code: "7DSkq", link: "https://kuula.co/share/collection/7DSkq?logo=-1&info=0&fs=0&vr=0&sd=1&thumbs=-1&keys=0", top: "72%", left: "41%" },
@@ -535,7 +585,5 @@
       }
     });
   </script>
-
-</body>
-
+ </body>
 </html>
