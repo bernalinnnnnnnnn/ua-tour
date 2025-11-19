@@ -29,7 +29,6 @@
       z-index: 1;
     }
 
-    /* ✅ Logo + Map overlay styling */
     .overlay-logo {
       position: fixed;
       top: 20px;
@@ -154,11 +153,9 @@
 <body>
   <iframe id="tourFrame" allow="accelerometer; gyroscope; xr-spatial-tracking"></iframe>
 
-  <!-- ✅ Logo and Map overlays -->
   <img id="leftLogo" class="overlay-logo left" src="assets/logos/logo.png" alt="UA Logo" />
-  <img id="rightLogo" class="overlay-logo right" src="assets/map/default.png" alt="Map" />
+  <img id="rightLogo" class="overlay-logo right" src="assets/maps/default.png" alt="Map" />
 
-  <!-- Back Button -->
   <button class="back-button" onclick="goBack()" title="Back to Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -176,7 +173,6 @@
     const rightLogo = document.getElementById("rightLogo");
     const loading = document.getElementById("loading");
 
-    // ✅ Tour assets mapping
     const tourAssets = {
       "7HLDj": { left: "assets/logos/logo.png", right: "assets/maps/admin.png" },
       "7H4DT": { left: "assets/logos/logo.png", right: "assets/maps/labschool.png" },
@@ -184,13 +180,13 @@
       "7Hhr1": { left: "assets/logos/logo.png", right: "assets/maps/ht.png" },
       "7HL6Z": { left: "assets/logos/logo.png", right: "assets/maps/ffp.png" },
       "7Hm6F": { left: "assets/logos/logo.png", right: "assets/maps/research.png" },
-      "7HmCC": { left: "assets/logos/logo.png", right: "assets/maps/aftic.png" },
+      "7HmCC": { left: "assets/logos/logo.png", right: "assets/maps/aftiicc.png" },
       "7HmPt": { left: "assets/logos/logo.png", right: "assets/maps/heas.png" },
       "7Hmlp": { left: "assets/logos/logo.png", right: "assets/maps/clinic.png" },
       "7DSYF": { left: "assets/logos/logo.png", right: "assets/maps/library.png" },
       "7H4MG": { left: "assets/logos/logo.png", right: "assets/maps/gym.png" },
       "7H5Mg": { left: "assets/logos/logo.png", right: "assets/maps/bamboo.png" },
-      "7D308": { left: "assets/logos/logo.png", right: "assets/maps/it.png" },
+      "7D308": { left: "assets/logos/logo.png", right: "assets/maps/cmcs.png" },
       "7Dtgc": { left: "assets/logos/logo.png", right: "assets/maps/sciences.png" },
       "7H4Mc": { left: "assets/logos/logo.png", right: "assets/maps/guidance.png" },
       "7H4qw": { left: "assets/logos/logo.png", right: "assets/maps/natsci.png" },
@@ -202,22 +198,23 @@
       "7HLvX": { left: "assets/logos/logo.png", right: "assets/maps/processing.png" },
       "7H4HH": { left: "assets/logos/logo.png", right: "assets/maps/old-agri.png" },
       "7DSqc": { left: "assets/logos/logo.png", right: "assets/maps/exe.png" },
-      "7DSkB": { left: "assets/logos/logo.png", right: "assets/maps/guest.png" }
+      "7DSkB": { left: "assets/logos/logo.png", right: "assets/maps/guest.png" },
+      "7H5CQ": { left: "assets/logos/logo.png", right: "assets/maps/main.png" }
     };
 
     if (tourUrl) {
       frame.src = tourUrl;
       frame.onload = () => (loading.style.display = "none");
 
-      // Extract tour code from Kuula URL
       const match = tourUrl.match(/collection\/([a-zA-Z0-9]+)/);
       const tourCode = match ? match[1] : null;
 
-      // Update logo + map dynamically
       if (tourCode && tourAssets[tourCode]) {
         leftLogo.src = tourAssets[tourCode].left;
         rightLogo.src = tourAssets[tourCode].right;
       }
+
+      window.lastSceneCode = tourCode;
     } else {
       loading.innerHTML = '<div class="error-message">No tour selected.<br>Please return to the main page.</div>';
     }
@@ -226,10 +223,27 @@
       window.location.href = "index.html";
     }
 
-    // Escape key shortcut
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") goBack();
     });
+
+    /* 🔄 AUTO-DETECT KUULA SCENE CHANGES */
+    setInterval(() => {
+      if (!frame.src) return;
+
+      const match = frame.src.match(/collection\/([a-zA-Z0-9]+)/);
+      const sceneCode = match ? match[1] : null;
+
+      if (sceneCode && sceneCode !== window.lastSceneCode) {
+        window.lastSceneCode = sceneCode;
+
+        if (tourAssets[sceneCode]) {
+          leftLogo.src = tourAssets[sceneCode].left;
+          rightLogo.src = tourAssets[sceneCode].right;
+        }
+      }
+    }, 800);
   </script>
+
 </body>
 </html>
